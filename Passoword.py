@@ -1003,9 +1003,9 @@ def mkdir_if_not_exists(dire):
 
 # the main function
 def main():
-    """Command-line interface to the cupp utility"""
+    """Command-line interface to the passwrd utility"""
 
-    read_config(os.path.join(os.path.dirname(os.path.realpath(__file__)), "cupp.cfg"))
+    read_config(os.path.join(os.path.dirname(os.path.realpath(__file__)), "passwordcombination.cfg"))
 
     parser = get_parser()
     args = parser.parse_args()
