@@ -54,8 +54,8 @@ def read_config(filename):
             "dicturl": config.get("downloader", "dicturl"),
         }
 
-        # 1337 mode configs, well you can add more lines if you add it to the
-        # config file too.
+        # 9004883 mode cconfigs, bem, você pode adicionar mais linhas se adicioná-lo ao
+        # arquivo de configuração também.
         leet = functools.partial(config.get, "leet")
         leetc = {}
         letters = {"a", "i", "e", "t", "o", "s", "g", "z"}
@@ -262,8 +262,8 @@ def improve_dictionary(file_to_open):
             x
         ) in (
             unique_lista
-        ):  # if you want to add more leet chars, you will need to add more lines in cupp.cfg too...
-            x = make_leet(x)  # convert to leet
+        ):  # se você quiser adicionar mais leet chars, você precisará adicionar mais linhas em cupp.cfg também...
+            x = make_leet(x)  # converter para let
             unique_leet.append(x)
 
     unique_list = unique_lista + unique_leet
@@ -982,14 +982,14 @@ def download_wordlist_http(filedown):
 
         dire = "dictionaries/" + arguments[intfiledown][0] + "/"
         mkdir_if_not_exists(dire)
-        files_to_download = arguments[intfiledown][1]
+        
 
         for fi in files_to_download:
             url = CONFIG["global"]["dicturl"] + arguments[intfiledown][0] + "/" + fi
             tgt = dire + fi
             download_http(url, tgt)
 
-        print("[+] files saved to " + dire)
+        print("[+] arquivos salvos em " + dire)
 
     else:
         print("[-] leaving.")
@@ -1017,11 +1017,7 @@ def main():
         version()
     elif args.interactive:
         interactive()
-    elif args.download_wordlist:
-        download_wordlist()
-    elif args.alecto:
-        alectodb_download()
-    elif args.improve:
+   
         improve_dictionary(args.improve)
     else:
         parser.print_help()
