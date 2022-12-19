@@ -3,11 +3,30 @@
 #  [Program]
 #
 #  CUPP
-# Perfilador de Senhas de Usuário Comum
+#  Common User Passwords Profiler
 #
 #  [Author]
 #
-#  Gilmar Scypt
+#  Muris Kurgas aka j0rgan
+#  j0rgan [at] remote-exploit [dot] org
+#  http://www.remote-exploit.org
+#  http://www.azuzi.me
+#
+#  [License]
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 3 of the License, or
+#  any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 #  See 'LICENSE' for more information.
 
@@ -31,8 +50,8 @@ CONFIG = {}
 
 
 def read_config(filename):
-  """Leia o arquivo de configuração fornecido e atualize as variáveis ​​globais para refletir
-    alterações (CONFIG)."""
+    """Read the given configuration file and update global variables to reflect
+    changes (CONFIG)."""
 
     if os.path.isfile(filename):
 
@@ -54,8 +73,8 @@ def read_config(filename):
             "dicturl": config.get("downloader", "dicturl"),
         }
 
-        # 9004883 mode cconfigs, bem, você pode adicionar mais linhas se adicioná-lo ao
-        # arquivo de configuração também.
+        # 1337 mode configs, well you can add more lines if you add it to the
+        # config file too.
         leet = functools.partial(config.get, "leet")
         leetc = {}
         letters = {"a", "i", "e", "t", "o", "s", "g", "z"}
@@ -88,14 +107,15 @@ def concats(seq, start, stop):
             yield mystr + str(num)
 
 
-# para classificar e fazer combinações...
+# for sorting and making combinations...
 def komb(seq, start, special=""):
     for mystr in seq:
         for mystr1 in start:
             yield mystr + special + mystr1
 
 
-# lista de impressão para palavras de contagem de arquivos
+# print list to file counting words
+
 
 def print_to_file(filename, unique_list_finished):
     f = open(filename, "w")
@@ -129,25 +149,25 @@ def print_to_file(filename, unique_list_finished):
         pass
 
     print(
-        "[+] Agora carregue seu pistolero com \033[1;31m"
+        "[+] Now load your pistolero with \033[1;31m"
         + filename
-        + "\033[1;m e atirar! Boa sorte!"
+        + "\033[1;m and shoot! Good luck!"
     )
 
 
-
-print("                        _ _  _               ")  
-print(" (_)(_)(_)              | | |(_)       _     ")  
-print("  _  _  _  ___   ____ __| | | _  ___ _| |_   ")  
-print(" | || || |/ _ \ / ___) _  | || |/___|_   _)  ")  
-print(" | || || | |_| | |  ( (_| | || |___ | | |_   ")
-print("  \_____/ \___/|_|   \____|\_)_(___/   \__)  ")
-print("                                             ")  
-print(28 * " " + "[ Gilmar Script | https://github.com/gilmarscript//]\r\n")
-print(28 * " " + "[ Direito Autorais | ORIGINAL//]\r\n")
-
-             
-
+def print_cow():
+    print(" ___________ ")
+    print(" \033[07m  cupp.py! \033[27m                # \033[07mC\033[27mommon")
+    print("      \                     # \033[07mU\033[27mser")
+    print("       \   \033[1;31m,__,\033[1;m             # \033[07mP\033[27masswords")
+    print(
+        "        \  \033[1;31m(\033[1;moo\033[1;31m)____\033[1;m         # \033[07mP\033[27mrofiler"
+    )
+    print("           \033[1;31m(__)    )\ \033[1;m  ")
+    print(
+        "           \033[1;31m   ||--|| \033[1;m\033[05m*\033[25m\033[1;m      [ Muris Kurgas | j0rgan@remote-exploit.org ]"
+    )
+    print(28 * " " + "[ Mebus | https://github.com/Mebus/]\r\n")
 
 
 def version():
@@ -160,14 +180,14 @@ def version():
 
 
 def improve_dictionary(file_to_open):
-    """Implementação da opção -w. Melhorar um dicionário por
-   questionando interativamente o usuário."""
+    """Implementation of the -w option. Improve a dictionary by
+    interactively questioning the user."""
 
     kombinacija = {}
     komb_unique = {}
 
     if not os.path.isfile(file_to_open):
-        exit("Error: file " + file_to_open + " não existe.")
+        exit("Error: file " + file_to_open + " does not exist.")
 
     chars = CONFIG["global"]["chars"]
     years = CONFIG["global"]["years"]
@@ -181,8 +201,8 @@ def improve_dictionary(file_to_open):
         listica += x.split()
 
     print("\r\n      *************************************************")
-    print("      *                    \033[1;31mAvisoG!!!\033[1;m                 *")
-    print("      *         Usando grandes listas de palavras em alguns         *")
+    print("      *                    \033[1;31mWARNING!!!\033[1;m                 *")
+    print("      *         Using large wordlists in some         *")
     print("      *       options bellow is NOT recommended!      *")
     print("      *************************************************\r\n")
 
@@ -192,12 +212,12 @@ def improve_dictionary(file_to_open):
 
     if conts == "y" and len(listic) > CONFIG["global"]["threshold"]:
         print(
-            "\r\n[-]O número máximo de palavras para concatenação é "
+            "\r\n[-] Maximum number of words for concatenation is "
             + str(CONFIG["global"]["threshold"])
         )
-        print("[-] Verifique o arquivo de configuração para aumentar este número.\r\n")
+        print("[-] Check configuration file for increasing this number.\r\n")
         conts = input(
-            "> Deseja concatenar todas as palavras da lista de palavras? Y/[N]: "
+            "> Do you want to concatenate all words from wordlist? Y/[N]: "
         ).lower()
 
     cont = [""]
@@ -209,7 +229,7 @@ def improve_dictionary(file_to_open):
 
     spechars = [""]
     spechars1 = input(
-        "> Deseja adicionar caracteres especiais no final das palavras? Y/[N]: "
+        "> Do you want to add special chars at the end of words? Y/[N]: "
     ).lower()
     if spechars1 == "y":
         for spec1 in chars:
@@ -220,7 +240,7 @@ def improve_dictionary(file_to_open):
                     spechars.append(spec1 + spec2 + spec3)
 
     randnum = input(
-        "> Você deseja adicionar alguns números aleatórios no final das palavras? Y/[N]:"
+        "> Do you want to add some random numbers at the end of words? Y/[N]:"
     ).lower()
     leetmode = input("> Leet mode? (i.e. leet = 1337) Y/[N]: ").lower()
 
@@ -240,9 +260,9 @@ def improve_dictionary(file_to_open):
         if conts == "y":
             kombinacija[5] = list(concats(cont, numfrom, numto))
 
-    print("\r\n[+] Agora fazendo um dicionário...")
+    print("\r\n[+] Now making a dictionary...")
 
-    print("[+] Lista de classificação e remoção de duplicatas...")
+    print("[+] Sorting list and removing duplicates...")
 
     for i in range(6):
         komb_unique[i] = list(dict.fromkeys(kombinacija[i]).keys())
@@ -262,8 +282,8 @@ def improve_dictionary(file_to_open):
             x
         ) in (
             unique_lista
-        ):  # se você quiser adicionar mais leet chars, você precisará adicionar mais linhas em cupp.cfg também...
-            x = make_leet(x)  # converter para let
+        ):  # if you want to add more leet chars, you will need to add more lines in cupp.cfg too...
+            x = make_leet(x)  # convert to leet
             unique_leet.append(x)
 
     unique_list = unique_lista + unique_leet
@@ -282,11 +302,11 @@ def improve_dictionary(file_to_open):
 
 
 def interactive():
-    """Implementação da opção -i. Questione interativamente o usuário e
-    crie um arquivo de dicionário de senhas com base na resposta."""
+    """Implementation of the -i switch. Interactively question the user and
+    create a password dictionary file based on the answer."""
 
-    print("\r\n[+] Insira as informações sobre a vítima para fazer um dicionário")
-    print("[+] Se você não souber todas as informações, basta pressionar enter quando solicitado! ;)\r\n")
+    print("\r\n[+] Insert the information about the victim to make a dictionary")
+    print("[+] If you don't know all the info, just hit enter when asked! ;)\r\n")
 
     # We need some information first!
 
@@ -308,17 +328,17 @@ def interactive():
 
     print("\r\n")
 
-    profile["wife"] = input("> Partners) nome: ").lower()
-    profile["wifen"] = input("> Partners) apelido: ").lower()
-    wifeb = input("> Partners) data de nascimento (DDMMYYYY): ")
+    profile["wife"] = input("> Partners) name: ").lower()
+    profile["wifen"] = input("> Partners) nickname: ").lower()
+    wifeb = input("> Partners) birthdate (DDMMYYYY): ")
     while len(wifeb) != 0 and len(wifeb) != 8:
         print("\r\n[-] You must enter 8 digits for birthday!")
         wifeb = input("> Partners birthdate (DDMMYYYY): ")
     profile["wifeb"] = str(wifeb)
     print("\r\n")
 
-    profile["kid"] = input("> nome da criança: ").lower()
-    profile["kidn"] = input("> Apelido da criança: ").lower()
+    profile["kid"] = input("> Child's name: ").lower()
+    profile["kidn"] = input("> Child's nickname: ").lower()
     kidb = input("> Child's birthdate (DDMMYYYY): ")
     while len(kidb) != 0 and len(kidb) != 8:
         print("\r\n[-] You must enter 8 digits for birthday!")
@@ -326,35 +346,35 @@ def interactive():
     profile["kidb"] = str(kidb)
     print("\r\n")
 
-    profile["pet"] = input("> Nome do animal de estimação: ").lower()
-    profile["company"] = input("> Nome da empresa: ").lower()
+    profile["pet"] = input("> Pet's name: ").lower()
+    profile["company"] = input("> Company name: ").lower()
     print("\r\n")
 
     profile["words"] = [""]
     words1 = input(
-        "> Deseja adicionar algumas palavras-chave sobre a vítima? Y/[N]: "
+        "> Do you want to add some key words about the victim? Y/[N]: "
     ).lower()
     words2 = ""
     if words1 == "y":
         words2 = input(
-            "> Plocação insira as palavras, separadas por vírgula. [i.e. hacker,juice,black], espaços serão removidos: "
+            "> Please enter the words, separated by comma. [i.e. hacker,juice,black], spaces will be removed: "
         ).replace(" ", "")
     profile["words"] = words2.split(",")
 
     profile["spechars1"] = input(
-        "> Deseja adicionar caracteres especiais no final das palavras? Y/[N]: "
+        "> Do you want to add special chars at the end of words? Y/[N]: "
     ).lower()
 
     profile["randnum"] = input(
-        "> Você deseja adicionar alguns números aleatórios no final das palavras? Y/[N]:"
+        "> Do you want to add some random numbers at the end of words? Y/[N]:"
     ).lower()
     profile["leetmode"] = input("> Leet mode? (i.e. leet = 1337) Y/[N]: ").lower()
 
-    generate_wordlist_from_profile(profile)  # gerar a lista de palavrascupp
+    generate_wordlist_from_profile(profile)  # generate the wordlist
 
 
 def generate_wordlist_from_profile(profile):
-    """ Gera uma lista de palavras a partir de um determinado perfil """
+    """ Generates a wordlist from a given profile """
 
     chars = CONFIG["global"]["chars"]
     years = CONFIG["global"]["years"]
@@ -371,7 +391,7 @@ def generate_wordlist_from_profile(profile):
                 for spec3 in chars:
                     profile["spechars"].append(spec1 + spec2 + spec3)
 
-    print("\r\n[+] Agora fazendo um dicionário...")
+    print("\r\n[+] Now making a dictionary...")
 
     # Now me must do some string modifications...
 
@@ -442,7 +462,7 @@ def generate_wordlist_from_profile(profile):
     rev_n = [rev_name, rev_nameup, rev_nick, rev_nickup]
     rev_w = [rev_wife, rev_wifeup]
     rev_k = [rev_kid, rev_kidup]
-    # Vamos fazer um trabalho sério! Isso vai ser uma bagunça de código, mas... quem se importa? :)
+    # Let's do some serious work! This will be a mess of code, but... who cares? :)
 
     # Birthdays combinations
 
@@ -982,14 +1002,14 @@ def download_wordlist_http(filedown):
 
         dire = "dictionaries/" + arguments[intfiledown][0] + "/"
         mkdir_if_not_exists(dire)
-        
+        files_to_download = arguments[intfiledown][1]
 
         for fi in files_to_download:
             url = CONFIG["global"]["dicturl"] + arguments[intfiledown][0] + "/" + fi
             tgt = dire + fi
             download_http(url, tgt)
 
-        print("[+] arquivos salvos em " + dire)
+        print("[+] files saved to " + dire)
 
     else:
         print("[-] leaving.")
@@ -1003,9 +1023,9 @@ def mkdir_if_not_exists(dire):
 
 # the main function
 def main():
-    """Command-line interface to the passwrd utility"""
+    """Command-line interface to the cupp utility"""
 
-    read_config(os.path.join(os.path.dirname(os.path.realpath(__file__)), "passwordcombination.cfg"))
+    read_config(os.path.join(os.path.dirname(os.path.realpath(__file__)), "cupp.cfg"))
 
     parser = get_parser()
     args = parser.parse_args()
@@ -1017,7 +1037,11 @@ def main():
         version()
     elif args.interactive:
         interactive()
-   
+    elif args.download_wordlist:
+        download_wordlist()
+    elif args.alecto:
+        alectodb_download()
+    elif args.improve:
         improve_dictionary(args.improve)
     else:
         parser.print_help()
