@@ -31,8 +31,8 @@ CONFIG = {}
 
 
 def read_config(filename):
-    """Read the given configuration file and update global variables to reflect
-    changes (CONFIG)."""
+  """Leia o arquivo de configuração fornecido e atualize as variáveis ​​globais para refletir
+    alterações (CONFIG)."""
 
     if os.path.isfile(filename):
 
@@ -88,15 +88,14 @@ def concats(seq, start, stop):
             yield mystr + str(num)
 
 
-# for sorting and making combinations...
+# para classificar e fazer combinações...
 def komb(seq, start, special=""):
     for mystr in seq:
         for mystr1 in start:
             yield mystr + special + mystr1
 
 
-# print list to file counting words
-
+# lista de impressão para palavras de contagem de arquivos
 
 def print_to_file(filename, unique_list_finished):
     f = open(filename, "w")
@@ -130,25 +129,25 @@ def print_to_file(filename, unique_list_finished):
         pass
 
     print(
-        "[+] Now load your pistolero with \033[1;31m"
+        "[+] Agora carregue seu pistolero com \033[1;31m"
         + filename
-        + "\033[1;m and shoot! Good luck!"
+        + "\033[1;m e atirar! Boa sorte!"
     )
 
 
-def print_cow():
-    print(" ___________ ")
-    print(" \033[07m  cupp.py! \033[27m                # \033[07mC\033[27mommon")
-    print("      \                     # \033[07mU\033[27mser")
-    print("       \   \033[1;31m,__,\033[1;m             # \033[07mP\033[27masswords")
-    print(
-        "        \  \033[1;31m(\033[1;moo\033[1;31m)____\033[1;m         # \033[07mP\033[27mrofiler"
-    )
-    print("           \033[1;31m(__)    )\ \033[1;m  ")
-    print(
-        "           \033[1;31m   ||--|| \033[1;m\033[05m*\033[25m\033[1;m      [ Muris Kurgas | j0rgan@remote-exploit.org ]"
-    )
-    print(28 * " " + "[ Mebus | https://github.com/Mebus/]\r\n")
+
+print("                        _ _  _               ")  
+print(" (_)(_)(_)              | | |(_)       _     ")  
+print("  _  _  _  ___   ____ __| | | _  ___ _| |_   ")  
+print(" | || || |/ _ \ / ___) _  | || |/___|_   _)  ")  
+print(" | || || | |_| | |  ( (_| | || |___ | | |_   ")
+print("  \_____/ \___/|_|   \____|\_)_(___/   \__)  ")
+print("                                             ")  
+print(28 * " " + "[ Gilmar Script | https://github.com/gilmarscript//]\r\n")
+print(28 * " " + "[ Direito Autorais | ORIGINAL//]\r\n")
+
+             
+
 
 
 def version():
@@ -161,8 +160,8 @@ def version():
 
 
 def improve_dictionary(file_to_open):
-    """Implementation of the -w option. Improve a dictionary by
-    interactively questioning the user."""
+    """Implementação da opção -w. Melhorar um dicionário por
+   questionando interativamente o usuário."""
 
     kombinacija = {}
     komb_unique = {}
@@ -309,9 +308,9 @@ def interactive():
 
     print("\r\n")
 
-    profile["wife"] = input("> Partners) name: ").lower()
-    profile["wifen"] = input("> Partners) nickname: ").lower()
-    wifeb = input("> Partners) birthdate (DDMMYYYY): ")
+    profile["wife"] = input("> Partners) nome: ").lower()
+    profile["wifen"] = input("> Partners) apelido: ").lower()
+    wifeb = input("> Partners) data de nascimento (DDMMYYYY): ")
     while len(wifeb) != 0 and len(wifeb) != 8:
         print("\r\n[-] You must enter 8 digits for birthday!")
         wifeb = input("> Partners birthdate (DDMMYYYY): ")
