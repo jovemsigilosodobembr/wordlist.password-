@@ -350,7 +350,7 @@ def interactive():
     ).lower()
     profile["leetmode"] = input("> Leet mode? (i.e. leet = 1337) Y/[N]: ").lower()
 
-    generate_wordlist_from_profile(profile)  # gerar a lista de palavras
+    generate_wordlist_from_profile(profile)  # gerar a lista de palavrascupp
 
 
 def generate_wordlist_from_profile(profile):
